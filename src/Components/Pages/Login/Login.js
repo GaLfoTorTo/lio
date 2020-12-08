@@ -20,6 +20,7 @@ const Login = ({navigation}) => {
                 <View style={estilo.logo}>
                     <Image 
                         source={require('../../../../assets/images/logo.png')}
+                        style={{ width: 150, height: 150 }}
                     />
                 </View>
                 <View style={estilo.inputs}>
