@@ -5,9 +5,7 @@ import Cabecalho from './Cabecalho/Cabecalho';
 import estilo from './estilo'
 
 const Feed = ({navigation}) => {
-    const aleatoria = (min, max) => {
-        min = estilo.imagem1
-        max = estilo.imagem2
+    const aleatoria = () => {
         let index = Math.floor(Math.random()* 2);
         return index
     }
@@ -24,6 +22,7 @@ const Feed = ({navigation}) => {
         <ScrollView style={estilo.container}>
                 <FlatList
                     data={posts}
+                    columnWrapperStyle={{}}
                     numColumns={2}
                     keyExtractor={(item,index) => index.toString()}
                     renderItem={({item, index}) => {
@@ -31,26 +30,21 @@ const Feed = ({navigation}) => {
                         let est = index % 2 ? estilo.imagem1 : estilo.imagem2
                         return (
                             <View style={estilo.subContainer}>
-                                <TouchableOpacity >
-                                    <Image 
-                                        source={{uri: item.image}}
-                                        style={resultado()}
+                                <View>
+                                    <TouchableOpacity >
+                                        <Image
+                                            source={{ uri: item.image }}
+                                            style={resultado()}
+                                        />
+                                    </TouchableOpacity>
+                                    <Cabecalho
+                                        nomeUsuario={item.owner.firstName + item.owner.lastName}
+                                        fotoUsuario={item.owner.picture}
+                                        idUsuario={item.owner.id}
+                                        legenda={item.text}
+                                        navigation={navigation}
                                     />
-                                </TouchableOpacity>
-                                <Cabecalho
-                                    nomeUsuario={item.owner.firstName}
-                                    fotoUsuario={item.owner.picture}
-                                    idUsuario={item.owner.id}
-                                    navigation={navigation}
-                                />
-                                
-                                {/* <TouchableOpacity>
-                                    <Image
-                                        source={{uri: item.image}}
-                                        style={est}
-                                    />
-                                    <Text style={{ color: 'white' }}>adshgafdshgsdfhfsdhsfdh</Text>
-                                </TouchableOpacity> */}
+                                </View>
                             </View>
                         )
                     }}   

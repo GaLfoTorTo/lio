@@ -2,18 +2,28 @@ import {StyleSheet} from 'react-native';
 
 const estilo = StyleSheet.create({
     container: {
-        flex: 1,
-        marginTop: 7,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: 10,
     },
     userImagem: {
+        width: 40,
+        height:40,
         borderRadius: 25,
-        marginLeft: 3
+        marginLeft: 5
+    },
+    nameLegenda: {
+        marginLeft: 4,
+        marginTop: 7,
     },
     userName: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    legenda: {
+        width: 120,
+        color: 'white',
+        marginTop: 5,
     }
-    
 })
 
 export default estilo;

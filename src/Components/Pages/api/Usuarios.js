@@ -1,6 +1,6 @@
 const ID = '5fcac6d4c0549154953906dc';
 
-const DadosUsuarios = async (callback) => {
+const Usuarios = async (callback) => {
 
     const cabecalho = {
         method: 'GET',
@@ -15,4 +15,4 @@ const DadosUsuarios = async (callback) => {
     callback(dadosJson.data);
 }
 
-export default DadosUsuarios;
+export default Usuarios;

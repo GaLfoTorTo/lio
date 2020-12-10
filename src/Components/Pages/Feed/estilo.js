@@ -9,9 +9,8 @@ const estilo = StyleSheet.create({
         backgroundColor: 'black',
     },
     subContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap'
+        //flex: 1,
+        flexDirection: 'row'
     },
     imagem1: {
         borderRadius: 20,
