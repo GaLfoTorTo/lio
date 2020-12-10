@@ -28,14 +28,6 @@ const estilo = StyleSheet.create({
         marginTop: 10,
         marginLeft: 5,
         marginRight: 5,
-    },
-    imagem3: {
-        borderRadius: 20,
-        width: 350,
-        height: 170,
-        marginTop: 10,
-        marginLeft: 5,
-        marginRight: 5,
     }
 })
 

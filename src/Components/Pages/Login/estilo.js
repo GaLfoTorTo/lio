@@ -9,7 +9,7 @@ const estilo = StyleSheet.create({
     conf: {
         flexDirection: 'row-reverse',
         marginTop: 45,
-        marginLeft: 20,       
+        marginRight: 20,       
     },
     logo: {
         flex: 1,

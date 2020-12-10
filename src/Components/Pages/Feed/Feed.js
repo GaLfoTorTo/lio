@@ -1,44 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import {View, Text, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
-import Dados from '../api/Dados'
+import DadosFeed from '../api/DadosFeed'
+import Cabecalho from './Cabecalho/Cabecalho';
 import estilo from './estilo'
 
-const Feed = () => {
+const Feed = ({navigation}) => {
+    const aleatoria = (min, max) => {
+        min = estilo.imagem1
+        max = estilo.imagem2
+        let index = Math.floor(Math.random()* 2);
+        return index
+    }
+
+    const resultado = () => { return aleatoria() == 0 ? estilo.imagem1 : estilo.imagem2}
 
     const [posts, setPosts ] = useState('');
     
     useEffect(() =>{
-        Dados(setPosts)
+        DadosFeed(setPosts)
     }, [])
 
     return(
         <ScrollView style={estilo.container}>
-            <View>
                 <FlatList
                     data={posts}
+                    numColumns={2}
                     keyExtractor={(item,index) => index.toString()}
-                    renderItem={({item}) => (
-                        <View style={estilo.subContainer}>
-                            <TouchableOpacity>
-                                <Image 
-                                    source={{uri: item.image}}
-                                    style={estilo.imagem1}
+                    renderItem={({item, index}) => {
+                        
+                        let est = index % 2 ? estilo.imagem1 : estilo.imagem2
+                        return (
+                            <View style={estilo.subContainer}>
+                                <TouchableOpacity >
+                                    <Image 
+                                        source={{uri: item.image}}
+                                        style={resultado()}
+                                    />
+                                </TouchableOpacity>
+                                <Cabecalho
+                                    nomeUsuario={item.owner.firstName}
+                                    fotoUsuario={item.owner.picture}
+                                    idUsuario={item.owner.id}
+                                    navigation={navigation}
                                 />
-                                <Text style={{color: 'white'}}>ADSGNÇNnçangdas</Text>
-                            </TouchableOpacity>
-                            
-                            <TouchableOpacity>
-                                <Image
-                                    source={{uri: item.image}}
-                                    style={estilo.imagem2}
-                                />
-                                <Text style={{ color: 'white' }}>adshgafdshgsdfhfsdhsfdh</Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    
+                                
+                                {/* <TouchableOpacity>
+                                    <Image
+                                        source={{uri: item.image}}
+                                        style={est}
+                                    />
+                                    <Text style={{ color: 'white' }}>adshgafdshgsdfhfsdhsfdh</Text>
+                                </TouchableOpacity> */}
+                            </View>
+                        )
+                    }}   
                 />
-            </View>
         </ScrollView>
     )
 }
