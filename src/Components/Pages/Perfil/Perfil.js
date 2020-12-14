@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView, ImageBackground, FlatList} from 'react-native';
+import {View, ScrollView, FlatList, Image, TouchableOpacity} from 'react-native';
 import Usuario from '../api/Usuario'
 import feedUsuario from '../api/feedUsuario'
 import estilo from './estilo';
@@ -19,21 +19,22 @@ const Perfil = ({navigation, route}) => {
     }, [])
     return(
         <ScrollView style={estilo.Scrool}>
-            <CardUsuario 
-                
-            />
+            <View>
+                <CardUsuario 
+                    dadosUsuario={usuarios}
+                />
                 <FlatList 
-                    data={usuarios}
+                    data={post}
+                    numColumns={3}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) =>(
-                        <View>
-                            <ImageBackground
-                                //source={{uri: dadosUsuario.image}}
-                                style={{widht: 30, height: 130, backgroundColor: 'white'}}
-                            />
-                            <Image
-                                style={estilo.imgPerfil}
-                            />
+                        <View style={estilo.posts}>
+                            <TouchableOpacity>
+                                <Image
+                                    source={{ uri: item.image }}
+                                    style={estilo.imagens}
+                                />
+                            </TouchableOpacity>
                         </View>
                     )}
                 />

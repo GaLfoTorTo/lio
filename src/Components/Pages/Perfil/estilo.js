@@ -4,8 +4,13 @@ const estilo = StyleSheet.create({
     Scrool: {
         backgroundColor: 'black'
     },
-    container: {
-        flex: 1
+    posts: {
+        flex: 1,
+    },
+    imagens: {
+        width: 116,
+        height: 116,
+        margin: 2,    
     }
     
 })

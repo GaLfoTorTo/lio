@@ -1,6 +1,6 @@
 const dummyID = '5fcac6d4c0549154953906dc';
 
-const Usuario = async (callback, idUsuario) => {
+const getUsuario = async (callback, idUsuario) => {
 
     const cabecalho = {
         method: "GET",
@@ -17,4 +17,4 @@ const Usuario = async (callback, idUsuario) => {
 
 }
 
-export default Usuario;
+export default getUsuario;
