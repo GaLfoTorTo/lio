@@ -3,7 +3,7 @@ import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native
 import { LinearGradient } from 'expo-linear-gradient';
 import estilo from './estilo';
 
-const CardUsuario = ({navigation, dadosUsuario}) => {
+const CardUsuario = ({navigation, dadosUsuario, locationUsuario}) => {
     return(
         <View >
             <View >
@@ -39,7 +39,9 @@ const CardUsuario = ({navigation, dadosUsuario}) => {
                             style={{ width: 20, height: 20 }}
                             source={require('../../../../../assets/images/place.png')}
                         />
-                    <Text style={estilo.texto}>{/* {dadosUsuario.location.city} */},{/* {dadosUsuario.location.country} */}</Text>
+                    <Text style={estilo.texto}>
+                         
+                       {locationUsuario.city}, {locationUsuario.country}</Text>
                 </View>
                 <View style={estilo.icon}>
                         <Image

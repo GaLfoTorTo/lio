@@ -11,24 +11,29 @@ const Perfil = ({navigation, route}) => {
 
     const [post, setPosts] = useState('');
     const [usuarios, setUsuarios] = useState('');
+    const [location, setLocation] = useState('')
 
     useEffect(() =>{
-        Usuario(setUsuarios, dadosUsuario.idUsuario);
+        Usuario(setUsuarios, dadosUsuario.idUsuario, setLocation);
         navigation.setOptions({title: dadosUsuario.nomeUsuario})
         feedUsuario(setPosts, dadosUsuario.idUsuario);
     }, [])
+
     return(
+        
         <ScrollView style={estilo.Scrool}>
+
             <View>
-                <CardUsuario 
-                    dadosUsuario={usuarios}
-                />
-                <FlatList 
+            <CardUsuario 
+                dadosUsuario={usuarios}
+                locationUsuario={location}
+            />
+            <FlatList 
                     data={post}
                     numColumns={3}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) =>(
-                        <View style={estilo.posts}>
+                        <View style={estilo.posts}>   
                             <TouchableOpacity>
                                 <Image
                                     source={{ uri: item.image }}
