@@ -22,7 +22,6 @@ const Perfil = ({navigation, route}) => {
     return(
         
         <ScrollView style={estilo.Scrool}>
-
             <View>
             <CardUsuario 
                 dadosUsuario={usuarios}

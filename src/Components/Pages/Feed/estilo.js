@@ -10,7 +10,8 @@ const estilo = StyleSheet.create({
     },
     subContainer: {
         //flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
     imagem1: {
         borderRadius: 20,

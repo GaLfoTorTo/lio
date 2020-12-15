@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './src/Components/Pages/Login/Login';
 import Feed from './src/Components/Pages/Feed/Feed';
 import Perfil from './src/Components/Pages/Perfil/Perfil';
+import Foto from './src/Components/Pages/Feed/Foto/Foto';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,10 @@ export default function App() {
         <Stack.Screen 
           name='Perfil'
           component={Perfil}
+        />
+        <Stack.Screen
+          name='Foto'
+          component={Foto}
         />
       </Stack.Navigator>
     </NavigationContainer>

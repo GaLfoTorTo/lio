@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {View, Text, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
 import DadosFeed from '../api/DadosFeed'
 import Cabecalho from './Cabecalho/Cabecalho';
@@ -22,7 +22,6 @@ const Feed = ({navigation}) => {
         <ScrollView style={estilo.container}>
                 <FlatList
                     data={posts}
-                    columnWrapperStyle={{}}
                     numColumns={2}
                     keyExtractor={(item,index) => index.toString()}
                     renderItem={({item, index}) => {
@@ -31,7 +30,9 @@ const Feed = ({navigation}) => {
                         return (
                             <View style={estilo.subContainer}>
                                 <View>
-                                    <TouchableOpacity >
+                                    <TouchableOpacity 
+                                        onPress={() => navigation.navigate('Foto', {posts})}
+                                    >
                                         <Image
                                             source={{ uri: item.image }}
                                             style={resultado()}
