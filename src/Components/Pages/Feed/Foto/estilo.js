@@ -8,22 +8,55 @@ const estilo = StyleSheet.create({
         backgroundColor: 'black',
         alignItems: 'center'
     },
-    cardFoto: {
-        width: medidas,
-        backgroundColor: 'white',
-        borderTopRightRadius: 25,
-        borderTopLeftRadius: 25,
-        margin:2,
+    imagem: {
+        width: '100%',
+        height: 400,
+        borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
+        marginTop: 3
+    },
+    cabecalho: {
+        width: '100%',
+        flexDirection: 'row',
+        marginTop: 13,
         alignItems: 'center'
     },
-    imagem: {
-        width: medidas,
-        height: 400,
-        borderTopRightRadius: 25,
-        borderTopLeftRadius: 25,
+    borderImg: {
+        borderRadius: 55,
+        padding: 3,
+        marginLeft: 7  
+    },
+    imgPerfil: {
+      width: 70,
+      height: 70,
+      borderRadius: 55
+    },
+    userName: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 17,
+        marginLeft: 5
+    },
+    botaoSeguir: {
+        position: 'relative',
+        left: 37 
+    },
+    seguir: {
+        alignItems: 'center',
+        borderRadius: 7,
+        padding: 10,
+        width: 80
+    },
+    textoSeguir:{
+        color: 'white',
+        fontWeight: 'bold'
     },
     texto: {
-        color: 'white'
+        marginTop: 13,
+        width: '87%',
+        color: 'white',
+        fontSize: 16,
+        textAlign: 'center'
     }
 })
 

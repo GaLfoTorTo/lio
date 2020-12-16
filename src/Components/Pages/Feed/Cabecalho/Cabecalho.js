@@ -11,21 +11,24 @@ const Cabecalho = ({navigation, nomeUsuario, emailUsuario, fotoUsuario, idUsuari
         legenda 
     }
     return(
-        <TouchableOpacity
-            onPress={() => navigation.navigate('Perfil', {dadosUsuario})}
-            style={estilo.container}
-        >
-                <Image  
-                    source={{uri: fotoUsuario}}
+        <View>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Perfil', { dadosUsuario })}
+                style={estilo.container}
+            >
+                <Image
+                    source={{ uri: fotoUsuario }}
                     style={estilo.userImagem}
                 />
                 <View style={estilo.nameLegenda}>
                     <Text style={estilo.userName}>@{nomeUsuario}</Text>
-                    <Text
-                        numberOfLines={2} 
-                        style={estilo.legenda}>{legenda}</Text>
                 </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
+            <View style={{alignItems: 'center', marginLeft: 7}}>
+                <Text numberOfLines={2} style={estilo.legenda}>{legenda}</Text>
+            </View>
+        </View>     
+        
     )
 }
 
