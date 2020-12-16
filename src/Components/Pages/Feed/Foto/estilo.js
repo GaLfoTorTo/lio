@@ -13,11 +13,14 @@ const estilo = StyleSheet.create({
         backgroundColor: 'white',
         borderTopRightRadius: 25,
         borderTopLeftRadius: 25,
-        marginTop:2
+        margin:2,
+        alignItems: 'center'
     },
     imagem: {
-        width: 200,
-        height: 400 
+        width: medidas,
+        height: 400,
+        borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
     },
     texto: {
         color: 'white'

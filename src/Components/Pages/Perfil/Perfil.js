@@ -33,7 +33,9 @@ const Perfil = ({navigation, route}) => {
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) =>(
                         <View style={estilo.posts}>   
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Foto', {posts})}
+                            >
                                 <Image
                                     source={{ uri: item.image }}
                                     style={estilo.imagens}

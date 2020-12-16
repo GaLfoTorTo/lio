@@ -1,6 +1,6 @@
 const dummyID = '5fcac6d4c0549154953906dc';
 
-const Usuario = async (callback, idUsuario, setLocation, setPosts) => {
+const Usuario = async (callback, idUsuario, setLocation = null) => {
 
     const cabecalho = {
         method: "GET",
@@ -14,7 +14,9 @@ const Usuario = async (callback, idUsuario, setLocation, setPosts) => {
     const dadosJson = await usuarioHTTP.json();
     //console.log(dadosJson.location.city)
     callback(dadosJson);
-    setLocation(dadosJson.location);
+    if(setLocation){
+        setLocation(dadosJson.location);
+    }
 }
 
 export default Usuario;

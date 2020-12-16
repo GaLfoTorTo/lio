@@ -31,7 +31,7 @@ const Feed = ({navigation}) => {
                             <View style={estilo.subContainer}>
                                 <View>
                                     <TouchableOpacity 
-                                        onPress={() => navigation.navigate('Foto', {posts})}
+                                        onPress={() => navigation.navigate('Foto', {item})}
                                     >
                                         <Image
                                             source={{ uri: item.image }}
