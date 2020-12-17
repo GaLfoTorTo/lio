@@ -34,7 +34,7 @@ const Perfil = ({navigation, route}) => {
                     renderItem={({item}) =>(
                         <View style={estilo.posts}>   
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('Foto', {posts})}
+                                onPress={() => navigation.navigate('Foto', {item})}
                             >
                                 <Image
                                     source={{ uri: item.image }}
