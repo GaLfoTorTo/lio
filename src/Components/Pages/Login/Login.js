@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import estilo from './estilo';
+import efetuarLogin from '../api/DadosLogin';
 
 const Login = ({navigation}) => {
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [mensagem, setMensagem] = useState("");
+
+    const tentarLogar = async () => {
+        if(email == '' || senha == '') {
+            setMensagem('E-mail e senha são obrigatórios');
+        } else {
+                const resposta  = await efetuarLogin(email, senha)
+                if(resposta.token) {
+                    
+                    navigation.replace('Feed', {email: email})
+                    
+                }else {
+                    setMensagem('Não foi possível logar');
+                }
+        } //eve.holt@reqres.in
+    }
+
     return(
         <LinearGradient
             colors={['rgb(0, 220, 130)', 'rgb(0, 180, 180)']}
             start={{x: 0.7, y: 0}}
             style={{flex: 1}}
         >
-            <TouchableOpacity style={estilo.conf}>
-                <Image
-                    source={require('../../../../assets/images/conf.png')}
-                    style={{ width: 20, height: 20 }}
-                />
-            </TouchableOpacity>
             <View style={estilo.container}>
                 <View style={estilo.logo}>
                     <Image 
@@ -23,17 +38,24 @@ const Login = ({navigation}) => {
                         style={{ width: 150, height: 150 }}
                     />
                 </View>
+                <View 
+                    style={estilo.cardMensagem}>
+                    <Text style={estilo.textoMensagem}>{mensagem}</Text>
+                </View>
                 <View style={estilo.inputs}>
                     <TextInput 
                         placeholder='E-mail ou Usuário'
                         style={estilo.input}
+                        onChangeText={texto => setEmail(texto)}
                     />
                     <TextInput
                         placeholder='Senha'
                         style={estilo.input}
+                        secureTextEntry={true}
+                        onChangeText={texto => setSenha(texto)}
                     />
                     <TouchableOpacity
-                        onPress={() => navigation.replace('Feed')}
+                        onPress={tentarLogar}
                     >
                         <LinearGradient
                             colors={['rgb(20, 0, 150)', 'rgb(10, 0, 60)']}
@@ -45,7 +67,9 @@ const Login = ({navigation}) => {
                         </LinearGradient>
                     </TouchableOpacity>
                     <View style={estilo.outrosBotoes}>
-                        <TouchableOpacity >
+                        <TouchableOpacity 
+                            onPress={() => navigation.replace('Feed')}
+                        >
                             <LinearGradient
                                 colors={['rgb(160,160,160)', 'rgb(90,90,90)']}
                                 start={{ x: 0.5, y: 0 }}

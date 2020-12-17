@@ -16,6 +16,15 @@ const estilo = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    cardMensagem: {
+        borderRadius: 10,
+        backgroundColor: 'rgb(200, 100, 100)',
+        padding: 5,
+        marginBottom: 5
+    },
+    textoMensagem: {
+        color: 'rgb(100, 5, 0)'
+    },
     inputs: {
         width: '80%',
         flex: 1

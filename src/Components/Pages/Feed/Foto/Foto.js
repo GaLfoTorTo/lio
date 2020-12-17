@@ -12,7 +12,6 @@ const Foto = ({navigation, route}) => {
         fotoUsuario: dados.owner.picture, 
         idUsuario: dados.owner.id,
     }
-    console.log(dados)
 
     return (
         <ScrollView style={estilo.scroll}>

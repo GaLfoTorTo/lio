@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feed } from '../../../../contatos-react-native/src/Pages/Feed';
+import Feed from '../Pages/Feed/Feed';
 import Perfil from '../Pages/Perfil/Perfil';
 
 const NavegacaoTabs = createBottomTabNavigator();
@@ -16,9 +16,9 @@ const Tab = ({navigation}) => {
                 case 'Feed':
                   iconName = 'home';
                   break;
-                case 'Perfil':
+                /* case 'Perfil':
                   iconName = 'users';
-                  break;
+                  break; */
                 default:
                   iconName = 'circle';
                   break;
@@ -33,8 +33,8 @@ const Tab = ({navigation}) => {
             showLabel: false,
           }}  
         >
-            <NavegacaoTabs.Screen name="Feed" component={Feed} navigation={navigation} options={{ title: 'Página de feed' }} />
-            <NavegacaoTabs.Screen name="Perfil" component={Perfil}/>
+            <NavegacaoTabs.Screen name="Feed" component={Feed} navigation={navigation}/>
+            {/* <NavegacaoTabs.Screen name="Perfil" component={Perfil}/> */}
         </NavegacaoTabs.Navigator>
     )
 }
