@@ -3,9 +3,13 @@ import {Dimensions, StyleSheet} from 'react-native';
 const medidas = Dimensions.get('screen').width;
 
 const estilo = StyleSheet.create({
-    container: {
+    scroll: {
         flex: 1,
         backgroundColor: 'black',
+
+    },
+    container: {
+        flex: 1,
         alignItems: 'center'
     },
     imagem: {
@@ -24,7 +28,26 @@ const estilo = StyleSheet.create({
     borderImg: {
         borderRadius: 55,
         padding: 3,
-        marginLeft: 7  
+        marginLeft: 7,
+        backgroundColor: 'black',
+
+    },
+    borderTag: {
+        marginTop: 20,
+        borderRadius: 55,
+        padding: 3,
+        marginLeft: 7,
+    },
+    tags:{
+        backgroundColor: 'black',
+        borderRadius: 55,
+        padding: 5,
+
+    },
+    textTag: {
+        color: 'white',
+        fontSize: 18,
+        textAlign: 'center'
     },
     imgPerfil: {
       width: 70,

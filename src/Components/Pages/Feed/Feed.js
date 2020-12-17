@@ -5,6 +5,7 @@ import Cabecalho from './Cabecalho/Cabecalho';
 import estilo from './estilo'
 
 const Feed = ({navigation}) => {
+
     const aleatoria = () => {
         let index = Math.floor(Math.random()* 2);
         return index
