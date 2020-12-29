@@ -1,6 +1,6 @@
 const dummyID = '5fcac6d4c0549154953906dc';
 
-const getUsuario = async (callback, idUsuario) => {
+const Usuario = async (callback, idUsuario, setLocation = null) => {
 
     const cabecalho = {
         method: "GET",
@@ -12,9 +12,10 @@ const getUsuario = async (callback, idUsuario) => {
 
     const usuarioHTTP = await (fetch(`https://dummyapi.io/data/api/user/${idUsuario}`, cabecalho));
     const dadosJson = await usuarioHTTP.json();
-    console.log(dadosJson)
     callback(dadosJson);
-
+    if(setLocation){
+        setLocation(dadosJson.location);
+    }
 }
 
-export default getUsuario;
+export default Usuario;

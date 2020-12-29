@@ -12,7 +12,7 @@ const DadosFeed = async (callback) => {
 
     const dadosHTTP = await(fetch('https://dummyapi.io/data/api/post', cabecalho));
     const dadosJson = await dadosHTTP.json();
-    callback(dadosJson);
+    callback(dadosJson.data);
 }
 
 export default DadosFeed;

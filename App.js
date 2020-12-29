@@ -21,10 +21,10 @@ export default function App() {
           },
         }}
       >
-        <Stack.Screen
+        {/* <Stack.Screen
           name='Tab'
           component={Tab}
-        />
+        /> */}
         <Stack.Screen 
           name='Login'
           component={Login}
@@ -34,7 +34,7 @@ export default function App() {
         />
         <Stack.Screen 
           name='Feed'
-          component={Feed}
+          component={Feed, Tab}
         />
         <Stack.Screen 
           name='Perfil'

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import estilo from './estilo';
-import efetuarLogin from '../api/DadosLogin';
+import efetuarLogin from '../../api/DadosLogin';
 
 const Login = ({navigation}) => {
 

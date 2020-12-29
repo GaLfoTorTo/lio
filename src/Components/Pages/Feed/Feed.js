@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {View, ScrollView, FlatList, TouchableOpacity, Image} from 'react-native';
-import DadosFeed from '../api/DadosFeed'
+import DadosFeed from '../../api/DadosFeed'
 import Cabecalho from './Cabecalho/Cabecalho';
 import estilo from './estilo'
 

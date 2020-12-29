@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {View, ScrollView, FlatList, Image, TouchableOpacity} from 'react-native';
-import Usuario from '../api/Usuario'
-import feedUsuario from '../api/feedUsuario'
+import Usuario from '../../api/Usuario'
+import feedUsuario from '../../api/feedUsuario'
 import estilo from './estilo';
 import CardUsuario from './CardUsuario/CardUsuario';
 
@@ -15,7 +15,7 @@ const Perfil = ({navigation, route}) => {
 
     useEffect(() =>{
         Usuario(setUsuarios, dadosUsuario.idUsuario, setLocation);
-        navigation.setOptions({title: dadosUsuario.nomeUsuario})
+        navigation.setOptions({title: dadosUsuario.nomeUsuario}) 
         feedUsuario(setPosts, dadosUsuario.idUsuario);
     }, [])
 
