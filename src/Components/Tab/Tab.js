@@ -1,12 +1,24 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Feed from '../Pages/Feed/Feed';
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather';
 import Notificacoes from '../Pages/Notificacoes/Notificacoes';
+import Post from '../Pages/Post/Post';
+import loading from '../Pages/Post/loading';
+import IconPlus from './IconPlus/IconPlus';
+import Home from '../Pages/Home/Home'
+import Feed from '../Pages/Feed/Feed';
+
 
 const NavegacaoTabs = createBottomTabNavigator();
 
 const Tab = ({navigation}) => {
+
+  const icone = () => ({
+    tabBarIcon: ({ tintColor }) => (
+      <IconPlus />
+      )
+    })
+
     return(
         <NavegacaoTabs.Navigator
           screenOptions={({ route }) => ({
@@ -16,6 +28,9 @@ const Tab = ({navigation}) => {
               switch (route.name) {
                 case 'Feed':
                   iconName = 'home';
+                  break;
+                case 'Post':
+                  iconName = 'plus';
                   break;
                 case 'Notificacoes':
                   iconName = 'bell';
@@ -45,9 +60,20 @@ const Tab = ({navigation}) => {
           }}  
         >
           
-          <NavegacaoTabs.Screen name="Feed" component={Feed} navigation={navigation}  options={{title: 'Feed'}}/>
-          <NavegacaoTabs.Screen name="Notificacoes" component={Notificacoes, idFoto} options={{title: 'Notificações'}}/>
+          <NavegacaoTabs.Screen 
+            name="Feed"
+            component={Feed}
+            navigation={navigation}
+            />
+          <NavegacaoTabs.Screen 
+            name="Post" 
+            component={loading}
+            navigation={navigation}
+            options={icone}
+            />
+          <NavegacaoTabs.Screen name="Notificacoes" component={Notificacoes} options={{title: 'Notificações'}}/>
         </NavegacaoTabs.Navigator>
     )
 }
+
 export default Tab;

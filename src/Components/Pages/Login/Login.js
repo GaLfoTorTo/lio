@@ -68,7 +68,7 @@ const Login = ({navigation}) => {
                     </TouchableOpacity>
                     <View style={estilo.outrosBotoes}>
                         <TouchableOpacity 
-                            onPress={() => navigation.replace('Feed')}
+                            onPress={() => navigation.replace('Home')}
                         >
                             <LinearGradient
                                 colors={['rgb(160,160,160)', 'rgb(90,90,90)']}
