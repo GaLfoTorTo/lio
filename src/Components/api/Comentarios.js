@@ -9,7 +9,7 @@ const Comentarios = async (callback, idFoto ) => {
             'app-id': ID
         }
     }
-    console.log(idFoto)
+    //*6console.log(idFoto)
 
     const feedHTTP = await(fetch(`https://dummyapi.io/data/api/post/${idFoto}/comment?limit=10`, cabecalho));
     const dadosJson = await feedHTTP.json();

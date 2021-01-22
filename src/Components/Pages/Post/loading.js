@@ -7,7 +7,7 @@ const loading = ({navigation}) => {
     const goPost = () => {return( navigation.replace('Post'))}
     setTimeout(() => {
         goPost()
-    }, 1000);
+    }, 700);
     
     return (
         <View style={estilo.loading}>

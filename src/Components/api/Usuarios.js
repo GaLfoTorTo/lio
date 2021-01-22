@@ -10,7 +10,7 @@ const Usuarios = async (callback) => {
         }
     }
 
-    const dadosUsuariosHTTP = await(fetch('https://dummyapi.io/data/api/user?limit=15', cabecalho));
+    const dadosUsuariosHTTP = await(fetch('https://dummyapi.io/data/api/user?limit=20', cabecalho));
     const dadosJson = await dadosUsuariosHTTP.json();
     callback(dadosJson.data);
 }

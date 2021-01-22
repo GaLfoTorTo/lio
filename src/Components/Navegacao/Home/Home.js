@@ -3,8 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Feed from '../../Pages/Feed/Feed';
 import Perfil from '../../Pages/Perfil/Perfil';
 import Foto from '../../Pages/Feed/Foto/Foto';
-import Tab from '../../Tab/Tab';
-import Post from '../Post/Post';
+import Tab from '../Tab/Tab';
+import Post from '../../Pages/Post/Post';
+import Drawer from '../../Navegacao/Drawer/Drawer';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,7 @@ const Home = () => {
     >
       <Stack.Screen
         name='Feed'
-        component={Feed, Tab}
+        component={Drawer}
         options={{
           title: null
         }}

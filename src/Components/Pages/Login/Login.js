@@ -38,8 +38,7 @@ const Login = ({navigation}) => {
                         style={{ width: 150, height: 150 }}
                     />
                 </View>
-                <View 
-                    style={estilo.cardMensagem}>
+                <View style={estilo.cardMensagem}>
                     <Text style={estilo.textoMensagem}>{mensagem}</Text>
                 </View>
                 <View style={estilo.inputs}>

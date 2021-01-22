@@ -1,12 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
-import Notificacoes from '../Pages/Notificacoes/Notificacoes';
-import Post from '../Pages/Post/Post';
-import loading from '../Pages/Post/loading';
+import Notificacoes from '../../Pages/Notificacoes/Notificacoes';
+import loading from '../../Pages/Post/loading';
 import IconPlus from './IconPlus/IconPlus';
-import Home from '../Pages/Home/Home'
-import Feed from '../Pages/Feed/Feed';
+import Feed from '../../Pages/Feed/Feed';
 
 
 const NavegacaoTabs = createBottomTabNavigator();

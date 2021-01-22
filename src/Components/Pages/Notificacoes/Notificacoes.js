@@ -6,22 +6,16 @@ import Comentarios from '../../api/Comentarios';
 import DadosFeed from '../../api/DadosFeed';
 
 
-const Notificacoes = ({navigation, route}) => {
+const Notificacoes = ({navigation}) => {
 
-    const idFoto = route.params.idFoto
-    console.log(idFoto)
-    
-    const [post, setPost] = useState('');
-    /* var idFoto = post;
-    for(var i = 0; idFoto.length > i; i++){
-        if(idFoto[0].id){
-            idFoto = idFoto[0].id
-        }
-    } */
+    const [id, setId] = useState('');
+
+    console.log()
     const [comentarios, setComentarios] = useState('');
 
     useEffect(() => {
-        // DadosFeed(setPost)
+         
+        DadosFeed(setId)
         Comentarios(setComentarios)
     }, [])
 
