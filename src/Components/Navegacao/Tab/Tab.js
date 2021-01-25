@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import Notificacoes from '../../Pages/Notificacoes/Notificacoes';
-import loading from '../../Pages/Post/loading';
+import loading from '../../Pages/Post/loadingCamera';
 import IconPlus from './IconPlus/IconPlus';
 import Feed from '../../Pages/Feed/Feed';
 

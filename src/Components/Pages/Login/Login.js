@@ -80,6 +80,20 @@ const Login = ({navigation}) => {
                                 /> 
                             </LinearGradient>
                         </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigation.replace('Loading')}
+                        >
+                            <LinearGradient
+                                colors={['rgb(255,255,255)', 'rgb(240,240,240)']}
+                                start={{ x: 0.5, y: 0 }}
+                                style={estilo.addConvidado}
+                            >
+                                <Image
+                                    source={require('../../../../assets/images/google.png')}
+                                    style={{ width: 30, height: 30 }}
+                                />
+                            </LinearGradient>
+                        </TouchableOpacity>
                         <TouchableOpacity >
                             <LinearGradient
                                 colors={['rgb(0,200,50)','rgb(0, 100,10)']}

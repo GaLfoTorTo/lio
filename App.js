@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './src/Components/Pages/Login/Login';
 import Home from './src/Components/Navegacao/Home/Home'
+import Loading from './src/Components/Navegacao/Loading/Loading';
 
 const Stack = createStackNavigator();
 
@@ -25,9 +26,16 @@ export default function App() {
             headerShown: false
           }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='Home'
           component={Home}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name='Loading'
+          component={Loading}
           options={{
             headerShown: false
           }}

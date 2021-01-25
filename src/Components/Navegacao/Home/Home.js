@@ -9,7 +9,30 @@ import Drawer from '../../Navegacao/Drawer/Drawer';
 
 const Stack = createStackNavigator();
 
-const Home = () => {
+const Home = ({route}) => {
+
+
+  const dadosConvidado = {
+    user: {
+      name: 'Convidado',
+      givenName: 'Convidado',
+      familyName: '',
+      photoUrl: 'C:/projetos/lio/assets/images/user.png',
+      email: ''
+    }
+    
+  }
+
+  const dados = () => {
+    if(typeof route.params === 'object' ){
+      const dadosGoogle = route.params.dadosGoogle;
+      return dadosGoogle;
+    }else{
+      const dadosGoogle = dadosConvidado;
+      return dadosGoogle;
+    }
+  }
+
 
   return(
     <Stack.Navigator
@@ -23,7 +46,7 @@ const Home = () => {
     >
       <Stack.Screen
         name='Feed'
-        component={Drawer}
+        component={() => <Drawer dadosGoogle={dados()} />}
         options={{
           title: null
         }}

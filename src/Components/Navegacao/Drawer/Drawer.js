@@ -7,11 +7,13 @@ import { Conversas } from './Conversas';
 
 const DrawerNavigator = createDrawerNavigator();
 
-const Drawer = ({navigation}) => {
+const Drawer = ({navigation, dadosGoogle}) => {
+
+    const dados = dadosGoogle;
+
     return(
         <DrawerNavigator.Navigator
-            drawerContent={props => <Conversas {...props} />}
-            screenOptions={{}}
+            drawerContent={props => <Conversas {...props}/>}
             drawerPosition={'right'}
             drawerStyle={{
                 backgroundColor: 'rgb(0 ,0, 0)'

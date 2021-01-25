@@ -7,6 +7,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Conversas = (props, navigation) => {
 
+    //const dadosGoogle = dadosGoogle;
+    console.warn();
+
     const aleatoria = () => {
         let index = Math.floor(Math.random() * 2);
         return index
