@@ -1,38 +1,35 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Feed from '../../Pages/Feed/Feed';
 import Perfil from '../../Pages/Perfil/Perfil';
-import Foto from '../../Pages/Feed/Foto/Foto';
-import Tab from '../Tab/Tab';
+import Foto from '../../Pages/Feed/Foto/Foto'
 import Post from '../../Pages/Post/Post';
 import Drawer from '../../Navegacao/Drawer/Drawer';
+import ButtonDrawer from './buttonDrawer/ButtonDrawer';
 
 const Stack = createStackNavigator();
 
-const Home = ({route}) => {
-
-
+const Home = ({ route }) => {
   const dadosConvidado = {
     user: {
       name: 'Convidado',
       givenName: 'Convidado',
       familyName: '',
-      photoUrl: 'C:/projetos/lio/assets/images/user.png',
+      photoUrl: 'assets/images/logo.png',
       email: ''
     }
-    
   }
 
   const dados = () => {
-    if(typeof route.params === 'object' ){
+
+    if (typeof route.params === 'object') {
       const dadosGoogle = route.params.dadosGoogle;
       return dadosGoogle;
-    }else{
+
+    } else {
       const dadosGoogle = dadosConvidado;
       return dadosGoogle;
     }
   }
-
 
   return(
     <Stack.Navigator
@@ -46,9 +43,11 @@ const Home = ({route}) => {
     >
       <Stack.Screen
         name='Feed'
-        component={() => <Drawer dadosGoogle={dados()} />}
+        component={Drawer}
+        initialParams={{dados: dados()}}
         options={{
-          title: null
+          title: null,
+          headerRight: (props) => (<ButtonDrawer {...props} />),
         }}
       />
       <Stack.Screen
@@ -71,7 +70,7 @@ const Home = ({route}) => {
         }}
       />
     </Stack.Navigator>
-)
+  )
 }
 
 export default Home;

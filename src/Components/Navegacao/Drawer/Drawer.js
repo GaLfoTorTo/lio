@@ -1,20 +1,20 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/Feather';
 import Chat from '../../Pages/Chat/Chat';
 import Tab from '../Tab/Tab';
 import { Conversas } from './Conversas';
 
 const DrawerNavigator = createDrawerNavigator();
 
-const Drawer = ({navigation, dadosGoogle}) => {
+const Drawer = ({navigation, route, ...props}) => {
 
-    const dados = dadosGoogle;
+    const dadosGoogle = route.params.dados
 
     return(
         <DrawerNavigator.Navigator
-            drawerContent={props => <Conversas {...props}/>}
+            drawerContent={(props) => <Conversas {...props} nome='seila' dadosGoogle={dadosGoogle}/>}
             drawerPosition={'right'}
+            edgeWidth={200}
             drawerStyle={{
                 backgroundColor: 'rgb(0 ,0, 0)'
             }}
@@ -22,7 +22,6 @@ const Drawer = ({navigation, dadosGoogle}) => {
             <DrawerNavigator.Screen 
                 name='Tab' 
                 component={Tab}
-                
             />
             <DrawerNavigator.Screen name='Chat' component={Chat} />
         </DrawerNavigator.Navigator>

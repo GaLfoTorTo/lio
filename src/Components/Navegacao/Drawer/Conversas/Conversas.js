@@ -3,13 +3,12 @@ import { View, Text, Image, ScrollView, FlatList} from 'react-native';
 import { LinearGradient} from 'expo-linear-gradient';
 import estilo from './estilo';
 import Usuarios from '../../../api/Usuarios';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
 const Conversas = (props, navigation) => {
 
-    //const dadosGoogle = dadosGoogle;
-    console.warn();
-
+    const dados = props.dadosGoogle.user;
+    
     const aleatoria = () => {
         let index = Math.floor(Math.random() * 2);
         return index
@@ -32,12 +31,12 @@ const Conversas = (props, navigation) => {
                     style={estilo.borderFoto}
                 >
                     <Image
-                        source={require('../../../../../assets/images/user.png')}
+                        source={{uri: dados.photoUrl}}
                         style={estilo.userFoto}
                     />
                 </LinearGradient>
-                <Text style={estilo.userNameProfile}>@iae carai</Text>
-                <Text style={estilo.nameUser}>iae carai</Text>
+                <Text style={estilo.userNameProfile}>@{dados.givenName+dados.familyName}</Text>
+                <Text style={estilo.nameUser}>{dados.name}</Text>
             </View>
             <View style={{width: '100%', height: 2, backgroundColor: 'rgba(180, 180, 180, 0.3)'}}></View>
             <ScrollView>

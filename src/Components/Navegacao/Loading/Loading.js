@@ -18,15 +18,12 @@ const Loading = ({ navigation }) => {
                 let ir = () => navigation.replace('Home', {dadosGoogle});
                 return result.accessToken, ir();
             } else {
-                return { cancelled: true };
+                let ir = () => navigation.replace('Login', { cancelled: true });
+                return ir();
             }
         } catch (e) {
             return { error: true };
         }
-    }
-
-    const ir = () => {
-        navigation.replace('Home');
     }
      
     setTimeout(() => {
