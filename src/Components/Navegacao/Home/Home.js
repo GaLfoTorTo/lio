@@ -5,10 +5,11 @@ import Foto from '../../Pages/Feed/Foto/Foto'
 import Post from '../../Pages/Post/Post';
 import Drawer from '../../Navegacao/Drawer/Drawer';
 import ButtonDrawer from './buttonDrawer/ButtonDrawer';
+import Chat from '../../Pages/Chat/Chat';
 
 const Stack = createStackNavigator();
 
-const Home = ({ route }) => {
+const Home = ({ route, navigation }) => {
   const dadosConvidado = {
     user: {
       name: 'Convidado',
@@ -47,7 +48,7 @@ const Home = ({ route }) => {
         initialParams={{dados: dados()}}
         options={{
           title: null,
-          headerRight: (props) => (<ButtonDrawer {...props} />),
+          headerRight: (props) => (<ButtonDrawer {...props} navigation={navigation}/>),
         }}
       />
       <Stack.Screen
@@ -67,6 +68,20 @@ const Home = ({ route }) => {
             height: 37
           },
           title: null
+        }}
+      />
+      <Stack.Screen 
+        name='Chat'
+        component={Chat}
+        options={{
+          headerStyle: {
+            backgroundColor: 'rgb(0,0,0)',
+          },
+          headerTintColor: 'rgb(255, 255, 255)',
+          headerTitleStyle: {
+            fontSize: 18,
+            marginLeft: 15
+          },
         }}
       />
     </Stack.Navigator>

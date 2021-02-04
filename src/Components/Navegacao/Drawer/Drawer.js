@@ -12,18 +12,23 @@ const Drawer = ({navigation, route, ...props}) => {
 
     return(
         <DrawerNavigator.Navigator
-            drawerContent={(props) => <Conversas {...props} nome='seila' dadosGoogle={dadosGoogle}/>}
+            drawerContent={(props) => <Conversas {...props} dadosGoogle={dadosGoogle}/>}
             drawerPosition={'right'}
             edgeWidth={200}
             drawerStyle={{
                 backgroundColor: 'rgb(0 ,0, 0)'
+            }}
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: 'rgb(0,0,0)',
+                    color: 'white'
+                }
             }}
         >
             <DrawerNavigator.Screen 
                 name='Tab' 
                 component={Tab}
             />
-            <DrawerNavigator.Screen name='Chat' component={Chat} />
         </DrawerNavigator.Navigator>
     )
 }

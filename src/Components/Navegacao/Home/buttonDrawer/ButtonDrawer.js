@@ -3,7 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from './estilo';
 
-const ButtonDrawer = ({props, navigation}) => {
+const ButtonDrawer = ({navigation}) => {
     return (
         <TouchableOpacity
             style={estilo.botao}
