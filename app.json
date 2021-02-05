@@ -23,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/iconVerde.png",
         "backgroundColor": "#111111"
-      }
+      },
+      "package": "com.liocompany.lio",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./iconVerde.png"
