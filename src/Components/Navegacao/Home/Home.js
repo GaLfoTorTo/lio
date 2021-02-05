@@ -6,6 +6,7 @@ import Post from '../../Pages/Post/Post';
 import Drawer from '../../Navegacao/Drawer/Drawer';
 import ButtonDrawer from './buttonDrawer/ButtonDrawer';
 import Chat from '../../Pages/Chat/Chat';
+import Menu from './Menu/Menu';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +39,6 @@ const Home = ({ route, navigation }) => {
         screenOptions={{
           headerStyle: {
             backgroundColor: 'rgb(0,220, 130)',
-            //height: 50
           }
         }}
     >
@@ -48,7 +48,8 @@ const Home = ({ route, navigation }) => {
         initialParams={{dados: dados()}}
         options={{
           title: null,
-          headerRight: (props) => (<ButtonDrawer {...props} navigation={navigation}/>),
+          headerRight: (props) => (<ButtonDrawer {...props} navigation={navigation} />),
+          headerLeft: (props) => (<Menu {...props} navigation={navigation} />),
         }}
       />
       <Stack.Screen

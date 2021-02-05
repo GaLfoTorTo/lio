@@ -35,7 +35,7 @@ const Login = ({navigation}) => {
                 <View style={estilo.logo}>
                     <Image 
                         source={require('../../../../assets/images/logo.png')}
-                        style={{ width: 250, height: 250 }}
+                        style={{ width: 300, height: 300}}
                     />
                 </View>
                 <View style={estilo.cardMensagem}>

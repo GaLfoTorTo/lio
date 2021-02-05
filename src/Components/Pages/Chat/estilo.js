@@ -45,24 +45,26 @@ const estilo = StyleSheet.create({
         justifyContent: 'center'
     },
     input: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
         height: '100%',
         borderRadius: 25,
-        padding: 15,
+        paddingLeft: 15,
+        paddingRight: 5,
         backgroundColor: 'black',
     },
     textInput: {
-        flex: 1
+        flex: 1,
+        color: 'white'
     },
     iconeCamera: {
         width: 40,
         height: 38,
-        left: 10,
-        borderRadius: 25,
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 25,
     },
     camera: {
         color: 'rgb(255, 255, 255)'

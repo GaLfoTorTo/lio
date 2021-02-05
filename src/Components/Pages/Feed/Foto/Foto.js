@@ -1,21 +1,32 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import { View, Image, Text, TouchableOpacity, FlatList, ScrollView, TextInput} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import Comentarios from '../../../api/Comentarios';
 import estilo from './estilo'
 
 const Foto = ({navigation, route}) => {
 
     const dados = route.params.item;
+    
     const dadosUsuario = {
         nomeUsuario: dados.owner.firstName,
         emailUsuario: dados.owner.email,
         fotoUsuario: dados.owner.picture, 
         idUsuario: dados.owner.id,
+        idFoto: dados.id,
     }
+
+
+    const [comentarios, setComentarios] = useState('');
+
+    useEffect(() => {
+        Comentarios(setComentarios, dadosUsuario.idFoto)
+    }, [])
 
     return (
         <ScrollView style={estilo.scroll}>
-            <View style={estilo.container}>
+            <View >
                 <Image
                     source={{ uri: dados.image }}
                     style={estilo.imagem}
@@ -47,8 +58,10 @@ const Foto = ({navigation, route}) => {
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>
-                <Text style={estilo.texto}>"{dados.text}"</Text>
-                <View>
+                <View style={{ alignItems: 'center' }}>
+                    <Text style={estilo.texto}>"{dados.text}"</Text>
+                </View>
+                <View style={{alignItems: 'center'}}>
                     <FlatList
                         data={dados.tags}
                         numColumns={3}
@@ -64,6 +77,41 @@ const Foto = ({navigation, route}) => {
                                         <Text style={estilo.textTag}>#{item}</Text>
                                     </View>
                                 </LinearGradient>
+                            )
+                        }}
+                    />
+                </View>
+                <View style={estilo.divisoria}>
+                    <View style={estilo.cardInput}>
+                        <TextInput 
+                            placeholder='Escreva um comentario...'
+                            placeholderTextColor='rgba(190, 190, 190, 0.6)'
+                            style={estilo.InputComentarios}
+                        /><TouchableOpacity style={{flex: 0.1}}>
+                            <Icon name='send' size={20} style={estilo.icon} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View>
+                    <FlatList 
+                        data={comentarios}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({item, index}) => {
+                            return(
+                                <View>
+                                    <View style={estilo.cardComentario}>
+                                        <Image 
+                                            source={{ uri: item.owner.picture}}
+                                            style={estilo.imageComentario}
+                                        />
+                                        <View>
+                                            <Text style={estilo.userNameComentario}>@{item.owner.firstName + item.owner.lastName}</Text>
+                                            <Text style={estilo.comentario}>{item.message}</Text>
+                                        </View>
+                                    </View>
+                                    <View style={estilo.divisoriaComentario}></View>
+
+                                </View>
                             )
                         }}
                     />

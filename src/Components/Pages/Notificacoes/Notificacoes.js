@@ -3,21 +3,39 @@ import { View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import estilo from './estilo';
 import Comentarios from '../../api/Comentarios'; 
-import DadosFeed from '../../api/DadosFeed';
+import feedUsuario from '../../api/feedUsuario';
 
 
 const Notificacoes = ({navigation}) => {
 
-    const [id, setId] = useState('');
-
-    console.log()
+    /* const [user, setUser] = useState('');
     const [comentarios, setComentarios] = useState('');
 
+    const idUsuario = '1pRsh5nXDIH3pjEOZ17A'
+
+    const id = () => {
+        for (var i = 0; i < user.length; i++) {
+            if (user[8].id) {
+                var idFoto = user[8].id;
+                return idFoto   
+            }
+        }
+    }
+
+    const idFoto = id()
+    //id()
+
     useEffect(() => {
-         
-        DadosFeed(setId)
-        Comentarios(setComentarios)
-    }, [])
+        feedUsuario(setUser, idUsuario);
+        Comentarios(setComentarios, idFoto);
+    }, []) 
+    
+    setTimeout(() => {
+        console.log(user)
+        console.log(idFoto)
+        console.log(comentarios)
+    }, 2000); */
+
 
     return(
         <ScrollView style={estilo.scroll}>
