@@ -2,10 +2,9 @@ import React, {useEffect, useMemo, useReducer} from 'react' ;
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthContext} from '../Components/AuthContext';
-import { getUsuario, removeUsuario } from '../Storage/Storage';
+import { getUsuario, removerUsuario } from '../Storage/Storage';
 import Login from '../Pages/Login/Login';
 import Home from './Home/Home'
-import Loading from './Loading/Loading';
 import Cadastrar from '../Pages/Cadastrar/Cadastrar';
 
 const Stack = createStackNavigator();
@@ -42,7 +41,7 @@ const Routes = ({navigation}) => {
         },
         signOut: () => {
             const remove = async () => {
-                const data = await removeUsuario()
+                const data = await removerUsuario()
                 dispatch({type: 'LOGOUT'})
             }
             remove();
@@ -90,13 +89,6 @@ const Routes = ({navigation}) => {
                         <Stack.Screen
                         name='Home'
                         component={Home}
-                        options={{
-                            headerShown: false
-                        }}
-                        />
-                        <Stack.Screen
-                        name='Loading'
-                        component={Loading}
                         options={{
                             headerShown: false
                         }}

@@ -4,34 +4,13 @@ import Perfil from '../../Pages/Perfil/Perfil';
 import Foto from '../../Pages/Foto/Foto'
 import Post from '../../Pages/Post/Post';
 import Drawer from '../../Routes/Drawer/Drawer';
-import ButtonDrawer from '../../Components/ButtonDrawer/ButtonDrawer';
+import ButtonDrawerMenu from '../../Components/ButtonDrawerMenu/ButtonDrawerMenu';
+import ButtonDrawerChat from '../../Components/ButtonDrawer/ButtonDrawerChat';
 import Chat from '../../Pages/Chat/Chat';
-import Menu from '../../Components/Menu/Menu';
 
 const Stack = createStackNavigator();
 
 const Home = ({ route, navigation }) => {
-  const dadosConvidado = {
-    user: {
-      name: 'Convidado',
-      givenName: 'Convidado',
-      familyName: '',
-      photoUrl: 'http://192.168.15.10/uplodas/usersFoto/user-default.png',
-      email: ''
-    }
-  }
-
-  const dados = () => {
-
-    if (typeof route.params === 'object') {
-      const dadosGoogle = route.params.dadosGoogle;
-      return dadosGoogle;
-
-    } else {
-      const dadosGoogle = dadosConvidado;
-      return dadosGoogle;
-    }
-  }
 
   return(
     <Stack.Navigator
@@ -45,11 +24,10 @@ const Home = ({ route, navigation }) => {
       <Stack.Screen
         name='Feed'
         component={Drawer}
-        initialParams={{dados: dados()}}
         options={{
           title: null,
-          headerRight: (props) => (<ButtonDrawer {...props} navigation={navigation} />),
-          headerLeft: (props) => (<Menu {...props} navigation={navigation} />),
+          headerLeft: (props) => (<ButtonDrawerMenu {...props} navigation={navigation} />),
+          headerRight: (props) => (<ButtonDrawerChat {...props} navigation={navigation} />),
         }}
       />
       <Stack.Screen

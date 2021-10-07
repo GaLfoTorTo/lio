@@ -2,7 +2,11 @@ import Api from "./Api";
 
 const NovoCadastro = async (callback, values) => {
     const HttpResponse = await Api
-        .post('/cadastrar', values)
+        .post('/cadastrar', values,{
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
         .then(function(response){
             return response.data.success;
         }).catch(function(e){

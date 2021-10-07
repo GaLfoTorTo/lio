@@ -8,7 +8,9 @@ import {
     ScrollView,
     TextInput,
     Modal,
-    ActivityIndicator
+    ActivityIndicator,
+    Platform,
+    Image
 } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -16,6 +18,8 @@ import TextInputMask from 'react-native-masked-input';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFormik } from "formik";
 import moment from "moment";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions'
 import LottieView from 'lottie-react-native';
 import { RectButton } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -24,8 +28,9 @@ import uf from '../../Components/uf';
 import estilo from './estilo';
 import NovoCadastro from "../../api/NovoCadastro";
 
-const Cadastrar = ({navigation}) => {
+const Cadastrar = ({navigation, route}) => {
 
+    const dadosGoogle = route.params?.result.user;
     const [indicador, setIndicador] = useState(0);
     const [focado, setFocado] = useState('');
     const [data, setData] = useState(new Date());
@@ -34,8 +39,10 @@ const Cadastrar = ({navigation}) => {
     const [ready, setReady] = useState('');
     const [loading, setLoading] = useState(false);
     const [mensagem, setMensagem] = useState('');
+    const [ uploadFoto, setUploadFoto] = useState('');
+    const fade = new Animated.Value(1);
 
-    /* const fadeAnimation = () => {
+    const fadeAnimation = () => {
         Animated.timing(fade, {
             toValue: 0,
             duration: 500,
@@ -48,17 +55,51 @@ const Cadastrar = ({navigation}) => {
             }).start();
         })
 
-    }; */
+    };
+
+    useEffect(() => {
+        if(dadosGoogle != undefined){
+            setIndicador(indicador + 1)
+        }
+    })
+
+    const CallbackFoto = async() => {
+        setFocado('foto')
+        if(Platform.OS == 'ios'){
+            const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+            if(status !== 'granted'){
+                alert('A permissão de camera e necessária')
+                return;
+            }
+        }
+        const foto = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect:[4,3],
+            quality: 1
+        })
+        if(foto.cancelled == true){
+            return;
+        }
+        if(!foto.uri){
+            return;
+        }
+        setUploadFoto(foto)
+    }
 
     const voltar = () => {
-        //fadeAnimation()
-        setIndicador(indicador - 1);
+        fadeAnimation()
+        setTimeout(() => {
+            setIndicador(indicador - 1);
+        }, 400);
     }
 
     const proximo = () => {
-        //fadeAnimation()
+        fadeAnimation()
         if(indicador < 4){
-            setIndicador(indicador + 1);
+            setTimeout(() => {
+                setIndicador(indicador + 1);
+            }, 400);
         }
     }
 
@@ -84,9 +125,33 @@ const Cadastrar = ({navigation}) => {
     }
 
     const salvar = (value) => {
-        setLoading(true)
+        setLoading(true);
         value.data_nascimento = moment(value.data_nascimento).format('DD/MM/yyyy')
-        NovoCadastro(setMensagem, value)
+        if(uploadFoto != ''){
+            const ext = uploadFoto.uri.split('.');
+            const form = new FormData()
+            form.append('nome', value.nome)
+            form.append('user_name', value.user_name)
+            form.append('email', value.email)
+            form.append('senha', value.senha)
+            form.append('data_nascimento', value.data_nascimento)
+            form.append('telefone', value.telefone)
+            form.append('cep', value.cep)
+            form.append('logradouro', value.logradouro)
+            form.append('numero', value.numero)
+            form.append('bairro', value.bairro)
+            form.append('cidade', value.cidade)
+            form.append('uf', value.uf)
+            form.append('foto_temp', {
+                name: 'UploadFoto',
+                type: uploadFoto.type+'/'+ext[ext.length - 1],
+                uri: uploadFoto.uri,
+            })
+            form.append('ext', ext[ext.length - 1])
+            NovoCadastro(setMensagem, form)
+        }else{
+            NovoCadastro(setMensagem, value)
+        }
         value.data_nascimento = moment(value.data_nascimento, 'DD/MM/yyyy')
     }
 
@@ -98,10 +163,10 @@ const Cadastrar = ({navigation}) => {
 
     const { handleChange, handleBlur, handleSubmit, setFieldValue, errors, touched, values } = useFormik({
         initialValues:{
-        id: '', nome: '', user_name: '', email: '', senha: '',
+        id: '', nome: dadosGoogle != undefined ? dadosGoogle.name : '', user_name: '', email: dadosGoogle != undefined ? dadosGoogle.name : '', senha: '',
         data_nascimento: data, telefone: '',
         cep: '', logradouro: '', numero: '', bairro: '',
-        cidade: '', uf: '', foto: ''
+        cidade: '', uf: '', foto_temp: ''
     },
     //validationSchema: validation ,
     onSubmit: values => salvar(values)
@@ -132,7 +197,7 @@ const Cadastrar = ({navigation}) => {
     }
     
     return (
-        <SafeAreaView style={[estilo.container, indicador == 0 && estilo.containerDark]}>
+        <Animated.View style={[estilo.container, {opacity: fade}, indicador == 0 && estilo.containerDark]}>
             {(()=>{
                 switch(indicador){
                     case 0:
@@ -226,7 +291,7 @@ const Cadastrar = ({navigation}) => {
                                     </View>
                                     <View style={estilo.row}>
                                         <View style={estilo.col}>
-                                        <View style={estilo.cardLabel}>
+                                            <View style={estilo.cardLabel}>
                                                 <Text style={estilo.label}>Nome de Usuário</Text>
                                                 <Text style={estilo.obrigatorio}>*</Text>
                                             </View>
@@ -240,9 +305,33 @@ const Cadastrar = ({navigation}) => {
                                             />
                                         </View>
                                     </View>
+                                    <View style={estilo.row}>
+                                        <View style={estilo.col}>
+                                            <Text style={estilo.label}>Foto:</Text>
+                                            <View style={estilo.rowFoto}>
+                                                <TouchableOpacity
+                                                    style={estilo.botaoFoto}
+                                                    onPress={CallbackFoto}
+                                                >
+                                                    <LinearGradient
+                                                        colors={['rgb(0, 220, 130)', 'rgb(0, 180, 180)']}
+                                                        start={{ x: 0.7, y: 0 }}
+                                                        style={[estilo.botaoFoto, estilo.botaoProximo]}
+                                                    >
+                                                        <Text style={estilo.textFoto}>Escolha sua foto</Text>
+                                                    </LinearGradient>
+                                                </TouchableOpacity>
+                                                <View style={estilo.col}>
+                                                    <View style={[estilo.input, focado == 'foto' && estilo.inputAtivo]}>
+                                                        <Text style={estilo.textInputData}>{uploadFoto != '' && '1 arquivo'}</Text>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
                                     <View >
-                                    <Text style={estilo.title}>Login</Text>
-                                    <Text style={estilo.subTitle}>Informe seu endereço de email e crie uma senha para fazer login no app.</Text>
+                                        <Text style={estilo.title}>Login</Text>
+                                        <Text style={estilo.subTitle}>Informe seu endereço de email e crie uma senha para fazer login no app.</Text>
                                     </View>
                                     <View style={estilo.row}>
                                         <View style={estilo.col}>
@@ -485,7 +574,7 @@ const Cadastrar = ({navigation}) => {
                     </TouchableOpacity>
                 }
             </View>
-        </SafeAreaView>
+        </Animated.View>
     )
 }
 

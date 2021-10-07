@@ -23,10 +23,10 @@
     "expo-camera": "~9.0.0",
     "expo-font": "~8.3.0",
     "expo-google-app-auth": "^8.1.4",
+    "expo-image-picker": "~9.1.1",
     "expo-linear-gradient": "~8.3.0",
     "expo-status-bar": "~1.0.2",
     "formik": "^2.2.9",
-    "lottie-react-native": "^3.0.2",
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -40,7 +40,10 @@
     "react-native-svg": "12.1.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "lottie-react-native": "~2.6.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

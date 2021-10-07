@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import Notificacoes from '../../Pages/Notificacoes/Notificacoes';
 import loading from '../../Pages/Post/loadingCamera';
 import IconPlus from './IconPlus/IconPlus';
 import Feed from '../../Pages/Feed/Feed';
+import { useDispatch, useSelector } from 'react-redux';
+import { DrawerActions } from '@react-navigation/routers';
+import { actions } from '../../Components/Redux/DrawerConfig';
 
 
 const NavegacaoTabs = createBottomTabNavigator();
@@ -16,6 +19,16 @@ const Tab = ({navigation}) => {
       <IconPlus />
       )
     })
+
+    const rightDrawer = useSelector((state) => state.reducer.rightDrawer);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (rightDrawer === 'toggle') {
+            navigation.dispatch(DrawerActions.toggleDrawer());
+            dispatch(actions.resetLeftDrawer());
+        }
+    }, [rightDrawer === 'toggle']);
 
     return(
         <NavegacaoTabs.Navigator

@@ -13,6 +13,7 @@ import {LinearGradient} from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import estilo from './estilo';
 import Logar from '../../api/Logar';
+import * as Google from 'expo-google-app-auth';
 import { saveUsuario } from '../../Storage/Storage';
 import { AuthContext } from '../../Components/AuthContext';
 
@@ -24,7 +25,7 @@ const Login = ({navigation}) => {
     const [loading, setLoading] = useState(false);
     const platform = Platform.OS;
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn, signOut} = useContext(AuthContext);
 
     const tentarLogar = async () => {
         setLoading(true)
@@ -42,6 +43,28 @@ const Login = ({navigation}) => {
             }
         }
         setLoading(false)
+    }
+
+    const LoginGoogle = async () => {
+        setLoading(true);
+        try {
+            const result = await Google.logInAsync({
+                androidClientId: '478462940609-nti08e0und47b2ri1a7oamk5fcttrnae.apps.googleusercontent.com',
+                //iosClientId: YOUR_CLIENT_ID_HERE,
+                scopes: ['profile', 'email'],
+            });
+            
+            if (result.type === 'success') {
+                setLoading(false)
+                return navigation.navigate('Cadastrar', {result});
+            } else {
+                setLoading(false)
+                return {cancelled: true};
+            }
+        } catch (e) {
+            setLoading(false)
+            return setMensagem('Não foi possivel efetuar login com Google. tente novamente.');
+        }
     }
 
     return(
@@ -110,19 +133,8 @@ const Login = ({navigation}) => {
                         </LinearGradient>
                     </TouchableOpacity>
                     <View style={estilo.outrosBotoes}>
-                        <TouchableOpacity 
-                            onPress={() => navigation.replace('Home')}
-                        >
-                            <LinearGradient
-                                colors={['rgb(160,160,160)', 'rgb(90,90,90)']}
-                                start={{ x: 0.5, y: 0 }}
-                                style={estilo.addConvidado}
-                            >
-                                <Icon name="user" size={32} solid color='white'/>
-                            </LinearGradient>
-                        </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => navigation.replace('Loading')}
+                            onPress={LoginGoogle}
                         >
                             <LinearGradient
                                 colors={['rgb(255,255,255)', 'rgb(240,240,240)']}
@@ -149,6 +161,7 @@ const Login = ({navigation}) => {
                     </View>
                     <TouchableOpacity
                         style={{alignItems: 'center', marginTop: 25}}
+                        onPress={() => {}}
                     >
                         <Text style={estilo.textHelp}>Esqueceu sua Senha?</Text>
                     </TouchableOpacity>

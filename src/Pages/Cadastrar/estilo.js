@@ -93,6 +93,12 @@ const estilo = StyleSheet.create({
         flexDirection: 'row',
         paddingVertical: 10
     },
+    rowFoto: {
+        flexDirection: 'row',
+        paddingVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     col: {
         flex: 1,
         paddingHorizontal: 5
@@ -116,10 +122,20 @@ const estilo = StyleSheet.create({
         borderRadius: 7,
         borderWidth: 1,
         borderColor: Colors.secondaryLight,
-        fontSize: 18
+        fontSize: 18,
+        color: Colors.secondaryLight
     },
     inputAtivo: {
         borderColor: 'rgb(0, 230, 180)'
+    },
+    botaoFoto: {
+        padding: 3,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textFoto:{
+        color: Colors.light,
     },
     textInputData: {
         color: Colors.secondaryLight,

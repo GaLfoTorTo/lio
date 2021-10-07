@@ -1,29 +1,41 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Chat from '../../Pages/Chat/Chat';
 import Tab from '../Tab/Tab';
 import { Conversas } from '../../Components/Conversas';
+import Menu from '../../Components/Menu/Menu';
 
 const DrawerNavigator = createDrawerNavigator();
 
-const Drawer = ({navigation, route, ...props}) => {
-
-    const dadosGoogle = route.params.dados
-
+export const Drawer = ({ navigation, route, ...props}) => {
     return(
         <DrawerNavigator.Navigator
-            drawerContent={(props) => <Conversas {...props} dadosGoogle={dadosGoogle}/>}
+            drawerContent={(props) => <Menu {...props}/>}
+            edgeWidth={200}
+            drawerStyle={{
+                backgroundColor: 'rgb(0 ,0, 0)'
+            }}
+            key={'leftDrawer'}
+        >
+            <DrawerNavigator.Screen 
+                name='DrawerRight' 
+                component={DrawerRight}
+            />
+        </DrawerNavigator.Navigator>
+    )
+}
+
+const DrawerRight = ({navigation, route, ...props}) => {
+    
+    return(
+        <DrawerNavigator.Navigator
+            drawerContent={(props) => <Conversas {...props}/>}
             drawerPosition={'right'}
             edgeWidth={200}
             drawerStyle={{
                 backgroundColor: 'rgb(0 ,0, 0)'
             }}
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: 'rgb(0,0,0)',
-                    color: 'white'
-                }
-            }}
+            key={'rightDrawer'}
+            drawerType={'back'}
         >
             <DrawerNavigator.Screen 
                 name='Tab' 

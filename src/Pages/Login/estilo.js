@@ -29,10 +29,12 @@ const estilo = StyleSheet.create({
         backgroundColor: Colors.danger,
         padding: 15,
         marginBottom: 5,
+        maxWidth: '80%'
     },
     textoMensagem: {
-        color: Colors.ligth,
-        fontSize: 16
+        color: Colors.light,
+        fontSize: 16,
+        textAlign: 'center'
     },
     inputs: {
         width: '80%',
