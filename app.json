@@ -28,7 +28,7 @@
       "versionCode": 1
     },
     "web": {
-      "favicon": "./iconVerde.png"
+      "favicon": "./assets/iconVerde.png"
     }
   }
 }
