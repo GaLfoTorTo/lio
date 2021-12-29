@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { View, Text, Image, ScrollView, FlatList, TouchableOpacity} from 'react-native';
-import { LinearGradient} from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 import estilo from './estilo';
 import Usuarios from '../../api/Usuarios';
-import { getUsuario } from '../../Storage/Storage';
 import baseUrl from '../../api/baseUrl';
 
-const Conversas = ({navigation}) => {
+const Conversas = () => {
 
-    const [usuario, setUsuario] = useState('');
-    const [token, setToken] = useState('');
     const [usuarios, setUsuarios] = useState('');
+    const navigation = useNavigation();
 
     useEffect(() => {
-        const data = async () =>{
-            const data = await getUsuario()
-            setUsuario(data.usuario)
-            setToken(data.token)
-        }
-        data()
         Usuarios(setUsuarios)
     }, []);
     
@@ -31,30 +23,12 @@ const Conversas = ({navigation}) => {
     
     return(
         <View style={estilo.container}>
-            <View style={estilo.cardUser}>
-                <TouchableOpacity>
-                    <LinearGradient
-                        colors={['rgb(0, 220, 130)', 'rgb(0, 180, 180)']}
-                        start={{ x: 0.7, y: 0 }}
-                        style={estilo.borderFoto}
-                    >
-                        <Image
-                            source={{ uri: baseUrl + usuario.foto }}
-                            style={estilo.userFoto}
-                        />
-                    </LinearGradient>
-                </TouchableOpacity>
-                <Text style={estilo.userNameProfile}>{usuario.user_name}</Text>
-                <Text style={estilo.nameUser}>{usuario.nome}</Text>
-            </View>
-            <View style={{width: '100%', height: 2, backgroundColor: 'rgba(180, 180, 180, 0.3)'}}></View>
             <ScrollView>
-            <FlatList 
-                data={usuarios}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item, index}) => {
-                    return(
-                        <ScrollView style={estilo.scroll}>
+                <FlatList 
+                    data={usuarios}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({item, index}) => {
+                        return(
                             <TouchableOpacity 
                                 onPress={()=> navigation.push('Chat', {dadosUsuario: item})}
                                 style={estilo.cardMensagem}>
@@ -68,10 +42,9 @@ const Conversas = ({navigation}) => {
                                 </View>
                                 <View style={resultado()}></View>
                             </TouchableOpacity>
-                        </ScrollView>
-                    )
-                }}
-            />
+                        )
+                    }}
+                />
             </ScrollView>
         </View>
     )

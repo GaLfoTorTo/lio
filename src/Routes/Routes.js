@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useReducer} from 'react' ;
+import React, {useEffect, useMemo, useReducer, useState} from 'react' ;
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthContext} from '../Components/AuthContext';
@@ -6,10 +6,13 @@ import { getUsuario, removerUsuario } from '../Storage/Storage';
 import Login from '../Pages/Login/Login';
 import Home from './Home/Home'
 import Cadastrar from '../Pages/Cadastrar/Cadastrar';
+import Splash from '../Components/Splash';
 
 const Stack = createStackNavigator();
 
 const Routes = ({navigation}) => {
+
+    const [splash, setSplash] = useState(true)
 
     const initialState = {
         usuario: null
@@ -53,13 +56,23 @@ const Routes = ({navigation}) => {
             const data = await getUsuario()
             dispatch({type: 'LOGAR', usuario: data.usuario})
         }
-        usuario()
+        usuario().then(()=> {setSplash(false)});
     },[])
+
     return (
         <AuthContext.Provider value={state}>
             <NavigationContainer>
                 {loginState.usuario == null ? (
                     <Stack.Navigator>
+                        {splash == true &&
+                        <Stack.Screen 
+                        name='Splash'
+                        component={Splash}
+                        options={{
+                            headerShown: false
+                        }}
+                        />
+                        }
                         <Stack.Screen 
                         name='Login'
                         component={Login}

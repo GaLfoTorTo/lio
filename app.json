@@ -4,7 +4,7 @@
     "slug": "lio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconVerde.png",
+    "icon": "./assets/Lio.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
@@ -21,14 +21,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/iconVerde.png",
+        "foregroundImage": "./assets/Lio.png",
         "backgroundColor": "#111111"
       },
       "package": "com.liocompany.lio",
       "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/iconVerde.png"
+      "favicon":"./assets/Lio.png"
     }
   }
 }

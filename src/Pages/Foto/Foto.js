@@ -9,9 +9,7 @@ import estilo from './estilo'
 const Foto = ({navigation, route}) => {
 
     const dados = route.params.item;
-    const dadosUsuario = dados.usuario;
-
-    console.warn(dadosUsuario)
+    const dadosUsuario = dados.usuario ? dados.usuario : route.params.dadosUsuario;
     const [comentarios, setComentarios] = useState('');
 
     return (
@@ -31,12 +29,12 @@ const Foto = ({navigation, route}) => {
                             style={estilo.borderImg}
                         >
                             <Image
-                                source={{ uri: baseUrl + dados.usuario.foto }}
+                                source={{ uri: baseUrl + dadosUsuario.foto }}
                                 style={estilo.imgPerfil}
                             />
                         </LinearGradient>
                     </TouchableOpacity>
-                    <Text style={estilo.userName}>{dados.usuario.user_name}</Text>
+                    <Text style={estilo.userName}>{dadosUsuario.user_name}</Text>
                     <TouchableOpacity style={estilo.botaoSeguir}>
                         <LinearGradient
                             colors={['rgb(0, 220, 130)', 'rgb(0, 180, 180)']}

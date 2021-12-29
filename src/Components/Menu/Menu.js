@@ -23,15 +23,18 @@ const Menu = ({navigation}) => {
     const itens = [
         {
             name: 'Perfil',
-            icon: 'user'
+            icon: 'user',
+            link: 'Perfil'
         },
         {
             name: 'Itens Salvos',
-            icon: 'bookmark'
+            icon: 'bookmark',
+            link: 'ItensSalvos'
         },
         {
             name: 'Editar',
-            icon: 'edit'
+            icon: 'edit',
+            link: 'Editar'
         }
     ]
     return (
@@ -61,7 +64,7 @@ const Menu = ({navigation}) => {
                         return (
                             <TouchableOpacity 
                                 style={estilo.itemSideBar}
-                                onPress={() => console.warn('teste')}
+                                onPress={() => navigation.navigate(item.link, {dadosUsuario: usuario})}
                             >
                                 <Icon name={item.icon} size={25} style={estilo.itemIcon} solid/>
                                 <Text style={[estilo.textItem, item.name == 'Itens Salvos' && {marginLeft: 14}]}>{item.name}</Text>

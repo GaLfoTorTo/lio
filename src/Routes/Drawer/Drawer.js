@@ -3,6 +3,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Tab from '../Tab/Tab';
 import { Conversas } from '../../Components/Conversas';
 import Menu from '../../Components/Menu/Menu';
+import TabDrawer from '../../Components/TabDrawer';
 
 const DrawerNavigator = createDrawerNavigator();
 
@@ -28,13 +29,12 @@ const DrawerRight = ({navigation, route, ...props}) => {
     
     return(
         <DrawerNavigator.Navigator
-            drawerContent={(props) => <Conversas {...props}/>}
+            drawerContent={(props) => <TabDrawer {...props}/>}
             drawerPosition={'right'}
             edgeWidth={200}
             drawerStyle={{
                 backgroundColor: 'rgb(0 ,0, 0)'
             }}
-            key={'rightDrawer'}
             drawerType={'back'}
         >
             <DrawerNavigator.Screen 
