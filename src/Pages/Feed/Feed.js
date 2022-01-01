@@ -32,19 +32,9 @@ const Feed = ({navigation}) => {
         data()
     }, []);
 
-    const handleScroll = (event) => {
-        let scroll = event.nativeEvent.contentOffset.y
-        console.warn(event.nativeEvent.contentOffset.y, scroll);
-        if(scroll > 0){
-            navigation.setParams({tabBarVisible: false})
-        }else if(scroll < event.nativeEvent.contentOffset.y){
-            navigation.setOptions({tabBarVisible: true})
-        }
-    }
     return(
         <ScrollView 
             style={estilo.container}
-            onScroll={handleScroll}
         >
                 <FlatList
                     data={posts}

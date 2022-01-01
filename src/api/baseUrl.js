@@ -1,3 +1,3 @@
-const baseUrl = 'http://DESKTOP-8D86L9B:8000'
+const baseUrl = 'http://192.168.0.26:8000'
 
 export default baseUrl

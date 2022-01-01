@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Animated, View, Text, Image } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import AppLoading from 'expo-app-loading';
+import Animated from 'react-native-reanimated';
 import { useFonts, Parisienne_400Regular } from '@expo-google-fonts/parisienne';
 import Colors from '../Style/Colors';
 
