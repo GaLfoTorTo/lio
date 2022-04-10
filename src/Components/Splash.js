@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import AppLoading from 'expo-app-loading';
-import Animated from 'react-native-reanimated';
+import Animated, {EasingNode} from 'react-native-reanimated';
 import { useFonts, Parisienne_400Regular } from '@expo-google-fonts/parisienne';
 import Colors from '../Style/Colors';
 
@@ -11,29 +11,34 @@ const Splash = () => {
         Parisienne_400Regular,
     });
     
-    const fadeAnim = new Animated.Value(0);
+    const fadeAnim = useRef(new Animated.Value(0)).current;
 
     const fadeIn = () => {
         Animated.timing(fadeAnim, {
             toValue: 1,
-            duration: 100,
+            duration: 500,
+            easing: EasingNode.ease,
             useNativeDriver: true
         }).start();
     };
 
-    if(!fontsLoaded)
+    useEffect(() => {
+            fadeIn();
+    }, [fontsLoaded])
+
+    if(!fontsLoaded){
         return <AppLoading />;
+    }
 
     return (
         <View style={estilo.container}>
-            {fadeIn()}
             <Image
                 source={require('../../assets/Lio.png')} 
                 style={estilo.load}
                 resizeMode='contain'
             />
             <View style={estilo.cardTitulo}>
-                <Animated.Text  style={[estilo.titulo, {opacity: fadeAnim}]}>Lio</Animated.Text>
+                <Animated.Text style={[estilo.titulo, {opacity: fadeAnim}]}> Lio </Animated.Text>
             </View>
         </View>
     );
@@ -65,9 +70,9 @@ const estilo = StyleSheet.create({
         fontSize: 55,
         color: Colors.light,
         fontFamily: 'Parisienne_400Regular',
-        /* textShadowColor: 'rgba(0, 220, 90, 1)',
+        textShadowColor: Colors.light,
         textShadowOffset: {width: 0, height: 1},
-        textShadowRadius: 15, */
+        textShadowRadius: 15,
     }
 })
 

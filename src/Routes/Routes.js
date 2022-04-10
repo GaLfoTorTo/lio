@@ -56,7 +56,9 @@ const Routes = ({navigation}) => {
             const data = await getUsuario()
             dispatch({type: 'LOGAR', usuario: data.usuario})
         }
-        usuario().then(()=> {setSplash(false)});
+        setTimeout(() => {
+            usuario().then(()=> {setSplash(false)});
+        }, 500);
     },[])
 
     return (
